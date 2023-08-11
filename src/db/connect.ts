@@ -7,6 +7,7 @@ function connect() {
     // const dbUri = config.get("dbUri") as string;
     // const dbUri = "mongodb://127.0.0.1:27017/mydb";
     const dbUri = process.env.MONGO_DB_URI;
+    console.log("dburi",dbUri);
     return mongoose.connect(dbUri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
