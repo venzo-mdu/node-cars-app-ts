@@ -1,5 +1,7 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 import config from 'config';
+const dotenv = require("dotenv");
+dotenv.config()
 
 function connect() {
     // const dbUri = config.get("dbUri") as string;
