@@ -5,7 +5,7 @@ import Cars, { ICar } from "../model/carModel"
 export const getAllCars = async (req: Request, res: Response) => {
     // console.log("inside controller ")
     try {
-        const cars = await Cars.find();
+        const cars = await Cars.find({status:'checked'});
         if (!cars) {
             console.log("no cars")
             res.status(404).json({message:"No cars found"})

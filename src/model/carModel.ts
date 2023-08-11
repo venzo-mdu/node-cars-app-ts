@@ -14,6 +14,10 @@ const CarSchema: Schema = new Schema({
   model: { type: String, required: true },
   year: { type: String, required: true },
   price: { type: String, required: true },
+  status: {
+    type: String,
+    default: 'pending', // Default value for the 'role' field
+  },
 });
 
 export default mongoose.model<ICar>('Cars', CarSchema);

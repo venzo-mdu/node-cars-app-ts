@@ -26,6 +26,7 @@ export const loginUser = async (req: Request, res: Response) => {
         const token = jwt.sign({
             user: {
                 username: user.username,
+                roles: user.roles,
                 email: user.email,
                 id: user._id,
             },
@@ -38,7 +39,7 @@ export const loginUser = async (req: Request, res: Response) => {
 }
 
 export const registerUser = async (req: Request, res: Response) => {
-    const { username, email, password } = req.body;
+    const { username, email, password,roles } = req.body;
     if (!username || !email || !password) {
         res.status(400);
         throw new Error("All fields are mandatory")
@@ -54,6 +55,7 @@ export const registerUser = async (req: Request, res: Response) => {
             username,
             email,
             password: hashedPassword,
+            roles
         });
         const savedUser = await newUser.save();
         res.status(201).json({ _id: savedUser.id, email: savedUser.email });
