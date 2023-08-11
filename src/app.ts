@@ -7,8 +7,14 @@ import bookRoutes from "./routes/bookRoutes";
 import checkerRoutes from "./routes/checkerRoutes";
 // import {errorHandler}  from "./middleware/errorHandler";
 
-const port = config.get("port") as number;
-const host = config.get("host") as string;
+// const port = config.get("port") as number;
+// const host = config.get("host") as string;
+const dotenv = require("dotenv");
+dotenv.config();
+
+const portVar = process.env.PORT || 8000 ;
+
+const port: number = portVar as number;
 
 const app = express();
 
@@ -22,8 +28,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/book", bookRoutes);
 app.use("/api/checker",checkerRoutes);
 
-app.listen(port, host, () => {
-    console.log(`Server is listening on port http://${host}:${port}`);
+app.listen(port, () => {
+    console.log(`Server is listening on ${port}`);
     connect();
     // routes(app);
 });
