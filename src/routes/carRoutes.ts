@@ -1,14 +1,15 @@
 import {Router} from "express";
 const router:Router = Router();
 
+
 import {getAllCars,createCars,updateCars, deleteCars,getMyCars} from '../controllers/carController';
 import {validateToken} from '../middleware/isAuthenticated';
 
-router.get("/",getAllCars);
-router.get("/getCar",validateToken,getMyCars)
-router.post("/",validateToken,createCars);
-router.put("/:id",validateToken,updateCars)
-router.delete("/:id",validateToken,deleteCars);
+router.get("/", getAllCars);
+router.get("/getCar", validateToken, getMyCars)
+router.post("/", validateToken, createCars);
+router.put("/:id", validateToken, updateCars)
+router.delete("/:id", validateToken, deleteCars);
 
 export default router;
 

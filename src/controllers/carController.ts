@@ -2,13 +2,14 @@ import { Request, Response } from "express";
 import Cars, { ICar } from "../model/carModel"
 // import { RequestHandler } from "express";
 
+
 export const getAllCars = async (req: Request, res: Response) => {
     // console.log("inside controller ")
     try {
-        const cars = await Cars.find({status:'checked'});
+        const cars = await Cars.find({ status: 'checked' });
         if (!cars) {
             console.log("no cars")
-            res.status(404).json({message:"No cars found"})
+            res.status(404).json({ message: "No cars found" })
         }
         res.status(200).json(cars);
     } catch (err) {
@@ -20,13 +21,13 @@ export const getAllCars = async (req: Request, res: Response) => {
 
 export const getMyCars = async (req: Request, res: Response) => {
     // console.log("inside controller ")
-    console.log("user id in car cont",req.user.id);
+    console.log("user id in car cont", req.user.id);
     try {
         const cars = await Cars.find({ user_id: req.user.id });
         console.log("cars is", cars);
         if (!cars) {
             console.log("no cars")
-            res.status(404).json({message:"No cars Found"})
+            res.status(404).json({ message: "No cars Found" })
         }
         res.status(200).json(cars);
     } catch (err) {
@@ -38,7 +39,7 @@ export const getMyCars = async (req: Request, res: Response) => {
 
 export const createCars = async (req: Request, res: Response) => {
     console.log(req.body);
-    console.log("user id",req.user.id);
+    console.log("user id", req.user.id);
     const user_id = req.user.id;
 
     const { carname, model, year, price } = req.body;
@@ -54,7 +55,7 @@ export const createCars = async (req: Request, res: Response) => {
             price
         });
         const savedCar = await cars.save();
-        console.log("savedCar",savedCar)
+        console.log("savedCar", savedCar)
         res.status(201).json(savedCar);
     } catch (err) {
         console.log("error occured while creating cars", err);
@@ -66,13 +67,13 @@ export const updateCars = async (req: Request, res: Response) => {
     const { id } = req.params;
     const cars = await Cars.findById(id);
     if (!cars) {
-        res.status(404).json({message:"No cars Found"})
+        res.status(404).json({ message: "No cars Found" })
     }
     if (!req.body) {
         return res.status(400).json({ message: "All Fields mandatory" })
     }
-    if(cars.user_id.toString() !== req.user.id){
-        res.status(403).json({message:"User dont't have permission to update other user details"});
+    if (cars.user_id.toString() !== req.user.id) {
+        res.status(403).json({ message: "User dont't have permission to update other user details" });
     }
 
     try {
@@ -94,10 +95,10 @@ export const deleteCars = async (req: Request, res: Response) => {
     const { id } = req.params;
     const cars = await Cars.findById(id);
     if (!cars) {
-        res.status(404).json({message:"No cars found"});
+        res.status(404).json({ message: "No cars found" });
     }
-    if(cars.user_id.toString() !== req.user.id){
-        res.status(403).json({message:"User dont't have permission to delete other user details"});
+    if (cars.user_id.toString() !== req.user.id) {
+        res.status(403).json({ message: "User dont't have permission to delete other user details" });
     }
     try {
         await Cars.findByIdAndRemove(id);

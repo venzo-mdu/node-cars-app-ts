@@ -6,8 +6,6 @@ import dotenv from "dotenv"
 
 dotenv.config();
 
-// const SECRET_KEY:string | undefined = process.env.ACCESS_TOKEN_SECRET;
-
 export const loginUser = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -69,3 +67,5 @@ export const registerUser = async (req: Request, res: Response) => {
 export const currentUser = async (req: Request, res: Response) => {
     res.json((<any>req).user)
 }
+
+// const SECRET_KEY:string | undefined = process.env.ACCESS_TOKEN_SECRET;

@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Cars, { ICar } from "../model/carModel";
 import Book, { IBook } from "../model/bookModel";
 
+
 export const bookCar = async (req: Request, res: Response) => {
     const { user_availability, contact_no } = req.body;
     const user_id = req.user.id;

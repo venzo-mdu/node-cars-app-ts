@@ -6,6 +6,7 @@ export interface ICar extends Document {
   model: string;
   year: string;
   price: string;
+  status:string;
 }
 
 const CarSchema: Schema = new Schema({
