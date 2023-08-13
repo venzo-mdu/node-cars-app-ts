@@ -6,7 +6,15 @@ export interface ICar extends Document {
   model: string;
   year: string;
   price: string;
-  status:string;
+  image: string;
+  carnumber: string;
+  enginecapacity: string;
+  tyre: string;
+  fuel: string;
+  kilometer: string;
+  powersteering: string;
+  noofowners: string;
+  status: string;
 }
 
 const CarSchema: Schema = new Schema({
@@ -15,9 +23,17 @@ const CarSchema: Schema = new Schema({
   model: { type: String, required: true },
   year: { type: String, required: true },
   price: { type: String, required: true },
+  image: { type: String },
+  carnumber: { type: String, required: true },
+  enginecapacity: { type: String, required: true },
+  tyre: { type: String, required: true },
+  fuel: { type: String, required: true },
+  kilometer: { type: String, required: true },
+  powersteering: { type: String, required: true },
+  noofowners: { type: String, required: true },
   status: {
     type: String,
-    default: 'pending', // Default value for the 'role' field
+    default: 'pending', // Default value for the 'status' field
   },
 });
 

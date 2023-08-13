@@ -37,7 +37,7 @@ export const loginUser = async (req: Request, res: Response) => {
 }
 
 export const registerUser = async (req: Request, res: Response) => {
-    const { username, email, password,roles } = req.body;
+    const { username, email, password, roles } = req.body;
     if (!username || !email || !password) {
         res.status(400);
         throw new Error("All fields are mandatory")
