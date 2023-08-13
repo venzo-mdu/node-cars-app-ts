@@ -48,3 +48,21 @@ export const approveCars = async (req: Request, res: Response) => {
         res.status(500).json({ message: "Error occured while updating data" })
     }
 }
+
+export const denyCars = async (req: Request, res: Response) => {
+    console.log("car id", req.params.id);
+    const carId = req.params.id;
+    const status = 'checked'
+    try {
+        const cars = await Cars.findById(carId) as ICar;
+        if(cars.status !== status){
+            await cars.deleteOne({_id:carId});
+            res.json({ message: 'Car is incapable and deleted Successfully' });
+        }else{
+            res.json({message:'You have approved this car already'})
+        }
+    } catch (error) {
+        console.log("error occured while delete cars", error);
+        res.status(500).json({ message: "Error occured while deleting data" })
+    }
+}
