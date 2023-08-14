@@ -12,6 +12,7 @@ export interface ICar extends Document {
   tyre: string;
   fuel: string;
   kilometer: string;
+  transmission:string;
   powersteering: string;
   noofowners: string;
   status: string;
@@ -29,6 +30,7 @@ const CarSchema: Schema = new Schema({
   tyre: { type: String, required: true },
   fuel: { type: String, required: true },
   kilometer: { type: String, required: true },
+  transmission:{type:String,required:true},
   powersteering: { type: String, required: true },
   noofowners: { type: String, required: true },
   status: {

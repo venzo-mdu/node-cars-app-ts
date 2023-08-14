@@ -67,8 +67,9 @@ export const createCars = async (req: Request, res: Response) => {
             tyre: req.body.tyre,
             fuel: req.body.fuel,
             kilometer: req.body.kilometer,
+            transmission:req.body.transmission,
             powersteering: req.body.powersteering,
-            noofowners: req.body.noofowners
+            noofowners: req.body.noofowners,
         });
         const savedCar = await cars.save();
         console.log("savedCar", savedCar)
