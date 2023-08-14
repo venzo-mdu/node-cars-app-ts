@@ -29,7 +29,7 @@ export const loginUser = async (req: Request, res: Response) => {
                 id: user._id,
             },
         }, process.env.ACCESS_TOKEN_SECRET!, { expiresIn: '1h' });
-        res.json({ token });
+        res.json({ token, user});
     }
     catch (err) {
         res.status(500).json({ error: 'Could not Log in' })
